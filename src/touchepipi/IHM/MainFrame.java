@@ -1,16 +1,16 @@
 package touchepipi.IHM;
 
-import touchepipi.Controlleur;
+import touchepipi.Controleur;
 import touchepipi.metier.Joueur;
 
 import javax.swing.*;
 
 public class MainFrame extends JFrame
 {
-    private  Controlleur ctrl;
+    private Controleur ctrl;
     private PanelMap map;
 
-    public MainFrame(Controlleur c)
+    public MainFrame(Controleur c)
     {
         this.ctrl = c;
         this.setVisible(true);

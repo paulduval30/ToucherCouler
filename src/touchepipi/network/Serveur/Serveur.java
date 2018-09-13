@@ -1,5 +1,8 @@
 package touchepipi.network.Serveur;
 
+import touchepipi.metier.Joueur;
+import touchepipi.metier.Partie;
+
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,12 +12,14 @@ public class Serveur implements Runnable
 {
     private ServerSocket socket;
 
+    private Partie partie;
     private boolean running;
 
     private ArrayList<ClientSocket> clients;
 
-    public Serveur()
+    public Serveur(Partie partie)
     {
+        this.partie = partie;
         try
         {
             this.running = false;
@@ -51,6 +56,15 @@ public class Serveur implements Runnable
             {
                 Socket clientSocket = this.socket.accept();
                 this.clients.add(new ClientSocket(clientSocket));
+                if(partie.getJ1() == null)
+                    partie.setJ1(new Joueur("1"));
+                else
+                    partie.setJ2(new Joueur("2"));
+                if(clients.size() == 2)
+                {
+                    Paquet.envoyerNom(clients.get(0), partie.getJ1());
+                    Paquet.envoyerNom(clients.get(1), partie.getJ2());
+                }
             }
             catch (Exception ex)
             {

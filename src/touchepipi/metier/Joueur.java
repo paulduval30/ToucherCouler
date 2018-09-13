@@ -7,13 +7,21 @@ public class Joueur
 {
     private String nom;
     private Map map;
-    Client client;
+    private Map mapAdverse;
+    private Client client;
+    private Partie partie;
 
     public Joueur(String nom)
     {
         this.nom = nom;
         this.map = new Map(10,10);
+        this.mapAdverse = this.partie.getJ2().getMap();
         this.client = new Client();
+    }
+
+    public void setPartie(Partie partie)
+    {
+        this.partie = partie;
     }
 
     public boolean placerBateau(int ligneDep, int ligneArr, int colonneDep, int colonneArr)
@@ -51,12 +59,26 @@ public class Joueur
 
     public void tirer(int ligne, int colonne)
     {
-        Paquet.envoyerTire(this.client, ligne, colonne);
+        Paquet.envoyerTir(this, ligne, colonne);
+    }
 
+    public void placerJalon(int ligne, int colonne, int value)
+    {
+        this.mapAdverse.getCarte()[ligne][colonne] = value;
     }
 
     public void setMap(Map map)
     {
         this.map = map;
+    }
+
+    public Joueur getJoueur()
+    {
+        return this;
+    }
+
+    public Client getClient()
+    {
+        return this.client;
     }
 }

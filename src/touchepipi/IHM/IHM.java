@@ -1,6 +1,6 @@
 package touchepipi.IHM;
 
-import touchepipi.Controlleur;
+import touchepipi.Controleur;
 import touchepipi.metier.Joueur;
 import touchepipi.metier.Partie;
 import touchepipi.util.Utilitaire;
@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class IHM
 {
-    private Controlleur ctrl;
+    private Controleur ctrl;
     private MainFrame main;
 
-    public IHM(Controlleur controlleur)
+    public IHM(Controleur controlleur)
     {
         this.ctrl = controlleur;
         this.main = new MainFrame(ctrl);

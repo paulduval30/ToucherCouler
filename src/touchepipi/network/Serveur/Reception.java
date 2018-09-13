@@ -6,12 +6,12 @@ package touchepipi.network.Serveur;
  */
 public class Reception
 {
-    public static void recevoirTir()
+    public static void recevoirTir(String data)
     {
 
     }
 
-    public static void recevoirBateau()
+    public static void recevoirBateau(String data)
     {
 
     }

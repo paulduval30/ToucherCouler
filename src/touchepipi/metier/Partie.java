@@ -1,8 +1,7 @@
 package touchepipi.metier;
 
-import touchepipi.Controlleur;
-
-import java.util.Scanner;
+import touchepipi.Controleur;
+import touchepipi.network.Serveur.Serveur;
 
 public class Partie
 {
@@ -10,14 +9,19 @@ public class Partie
     private Joueur j2;
 
     private Joueur current;
-    private Controlleur ctrl;
+    private Controleur ctrl;
+    private Serveur serveur;
 
-    public Partie(Joueur j1, Joueur j2, Controlleur controlleur)
+    public Partie(Controleur controleur)
     {
         this.j1 = j1;
         this.j2 = j2;
         this.current = j1;
-        this.ctrl = controlleur;
+        this.ctrl = controleur;
+        this.serveur = new Serveur(this);
+        serveur.listen();
+
+
     }
 
     public void jouerTour()
@@ -26,11 +30,6 @@ public class Partie
         while(true)
         {
             ctrl.lirePosistionBateau();
-
-            if(this.current == j1)
-                current = j2;
-            else
-                current = j1;
             ctrl.afficherCarte();
         }
     }
@@ -58,6 +57,14 @@ public class Partie
     public Joueur getCurrent()
     {
         return current;
+    }
+
+    public void changerTour()
+    {
+        if(j1 == current)
+            this.current = j2;
+        else
+            this.current = j1;
     }
 
     public void setCurrent(Joueur current)

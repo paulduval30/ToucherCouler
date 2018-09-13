@@ -3,12 +3,13 @@ package touchepipi;
 import touchepipi.IHM.IHM;
 import touchepipi.metier.Joueur;
 import touchepipi.metier.Partie;
+import touchepipi.network.Serveur.Serveur;
 
-public class Controlleur
+public class Controleur
 {
     IHM ihm;
     Partie p;
-    public Controlleur()
+    public Controleur()
     {
         this.p = new Partie(new Joueur("Paul"), new Joueur("Thomas"), this);
         this.ihm = new IHM(this);
@@ -16,7 +17,9 @@ public class Controlleur
 
     public void lancerPartie()
     {
-        p.jouerTour();
+        this.p.getJ1().setPartie(this.p);
+        this.p.getJ2().setPartie(this.p);
+        this.p.jouerTour();
     }
 
     public void lirePosistionBateau()
@@ -40,7 +43,7 @@ public class Controlleur
 
     public static void main(String[] argv)
     {
-        Controlleur c = new Controlleur();
+        Controleur c = new Controleur();
         c.lancerPartie();
     }
 }

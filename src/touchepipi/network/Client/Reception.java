@@ -5,17 +5,22 @@ package touchepipi.network.Client;
  */
 public class Reception
 {
-    public static void recevoirTire()
+    public static void recevoirTire(String data)
     {
 
     }
 
-    public static void recevoirGagnant()
+    public static void recevoirGagnant(String data)
     {
 
     }
 
-    public static void recevoirTour()
+    public static void recevoirTour(String data)
+    {
+
+    }
+
+    public static void recevoirNom(String data)
     {
 
     }

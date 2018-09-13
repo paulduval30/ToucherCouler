@@ -63,13 +63,7 @@ public class Client implements Runnable
             try
             {
                 String message = input.readUTF();
-                if(message.equals("Au revoir"))
-                {
-                    this.send("Au revoir");
-                    break;
-                }
-                else
-                    System.out.println(message);
+                System.out.println(message);
             }
             catch(Exception e )
             {
