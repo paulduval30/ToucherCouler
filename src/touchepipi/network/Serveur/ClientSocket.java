@@ -1,5 +1,8 @@
 package touchepipi.network.Serveur;
 
+import touchepipi.metier.Joueur;
+import touchepipi.metier.JoueurServeur;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -13,9 +16,11 @@ public class ClientSocket implements Runnable
     private DataInputStream in;
 
     private boolean running;
+    private JoueurServeur joueur;
 
-    public ClientSocket(Socket socket)
+    public ClientSocket(Socket socket, JoueurServeur joueur)
     {
+        this.joueur = joueur;
         this.socket = socket;
         try
         {
@@ -76,5 +81,10 @@ public class ClientSocket implements Runnable
         {
             ex.printStackTrace();
         }
+    }
+
+    public JoueurServeur getJoueur()
+    {
+        return joueur;
     }
 }

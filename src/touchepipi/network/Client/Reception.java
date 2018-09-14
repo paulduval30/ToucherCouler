@@ -5,7 +5,7 @@ package touchepipi.network.Client;
  */
 public class Reception
 {
-    public static void recevoirTire(String data)
+    public static void recevoirTir(String data)
     {
 
     }

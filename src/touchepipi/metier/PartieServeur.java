@@ -20,18 +20,6 @@ public class PartieServeur
         this.ctrl = controleur;
         this.serveur = new Serveur(this);
         serveur.listen();
-
-
-    }
-
-    public void jouerTour()
-    {
-        ctrl.afficherCarte();
-        while(true)
-        {
-            ctrl.lirePosistionBateau();
-            ctrl.afficherCarte();
-        }
     }
 
     public JoueurServeur getJ1()

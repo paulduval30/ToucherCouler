@@ -9,13 +9,11 @@ public class JoueurServeur
     private String nom;
     private Map map;
     private Map mapAdverse;
-    private ClientSocket client;
 
-    public JoueurServeur(ClientSocket c)
+    public JoueurServeur()
     {
         this.map = new Map(10,10);
         this.mapAdverse = new Map(this.map.getNbColonne(), this.map.getNbLigne());
-        this.client = c;
     }
 
 
@@ -61,8 +59,4 @@ public class JoueurServeur
         return this;
     }
 
-    public ClientSocket getClient()
-    {
-        return this.client;
-    }
 }

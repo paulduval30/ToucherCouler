@@ -21,4 +21,9 @@ public class Paquet
     {
         joueur.getClient().send("3-" + joueur.getNom());
     }
+
+    public static void connection(Joueur j)
+    {
+        j.getClient().send("4-" + j.getNom());
+    }
 }

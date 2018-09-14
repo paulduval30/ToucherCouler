@@ -13,7 +13,7 @@ public class Serveur implements Runnable
 {
     private ServerSocket socket;
 
-    private Partie partie;
+    private PartieServeur partie;
     private boolean running;
 
     private ArrayList<ClientSocket> clients;
@@ -56,23 +56,21 @@ public class Serveur implements Runnable
             try
             {
                 Socket clientSocket = this.socket.accept();
-                this.clients.add(new ClientSocket(clientSocket));
+                this.clients.add(new ClientSocket(clientSocket, new JoueurServeur()));
                 if(partie.getJ1() == null)
                 {
-                    partie.setJ1(new JoueurServeur(this.clients.get(0)));
+                    partie.setJ1(clients.get(0).getJoueur());
                     System.out.println("Hello J1");
                 }
                 else
                 {
                     System.out.println("Hello J2");
-                    partie.setJ2(new JoueurServeur(this.clients.get(1)));
+                    partie.setJ2(this.clients.get(1).getJoueur());
                 }
                 if(clients.size() == 2)
                 {
-                    Paquet.envoyerNom(clients.get(0), partie.getJ1());
-                    Paquet.envoyerNom(clients.get(1), partie.getJ2());
+                    Paquet.envoyerNom(this);
                     partie.setCurrent(partie.getJ1());
-                    partie.jouerTour();
                 }
             }
             catch (Exception ex)
@@ -83,6 +81,11 @@ public class Serveur implements Runnable
         }
 
         this.close();
+    }
+
+    public PartieServeur getPartie()
+    {
+        return partie;
     }
 
     public void sendAll(String message)

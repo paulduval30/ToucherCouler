@@ -25,8 +25,8 @@ public class Paquet
         s.sendAll("0-Debut");
     }
 
-    public static void envoyerNom(ClientSocket c,JoueurServeur joueur)
+    public static void envoyerNom(Serveur s)
     {
-        c.send("1-" + joueur.getNom());
+        s.sendAll("1-1:" + s.getPartie().getJ1().getNom()+",2:"+s.getPartie().getJ2().getNom());
     }
 }

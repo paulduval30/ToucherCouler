@@ -57,9 +57,14 @@ public class Joueur
         Paquet.envoyerTir(this, ligne, colonne);
     }
 
-    public void placerJalon(int ligne, int colonne, int value)
+    public void placerJalon(Map map, int ligne, int colonne, int value)
     {
-        this.mapAdverse.getCarte()[ligne][colonne] = value;
+        this.map.getCarte()[ligne][colonne] = value;
+    }
+
+    public Map getMapAdverse()
+    {
+        return this.mapAdverse;
     }
 
     public void setMap(Map map)

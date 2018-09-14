@@ -15,4 +15,16 @@ public class Reception
     {
 
     }
+
+    public static void recevoirConnection(String data)
+    {
+
+    }
+
+    public static void recevoirFinTour(String data)
+    {
+
+    }
+
+
 }
