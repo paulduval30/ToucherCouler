@@ -5,10 +5,10 @@ import touchepipi.network.Serveur.Serveur;
 
 public class Partie
 {
-    private Joueur j1;
-    private Joueur j2;
+    private JoueurServeur j1;
+    private JoueurServeur j2;
 
-    private Joueur current;
+    private JoueurServeur current;
     private Controleur ctrl;
     private Serveur serveur;
 

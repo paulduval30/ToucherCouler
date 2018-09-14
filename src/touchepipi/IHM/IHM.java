@@ -15,7 +15,6 @@ public class IHM
     public IHM(Controleur controlleur)
     {
         this.ctrl = controlleur;
-        this.main = new MainFrame(ctrl);
     }
 
     public void lirePositionBateau()
@@ -63,6 +62,6 @@ public class IHM
 
     public void afficherMap(Joueur j)
     {
-        main.repaintMap(j);
+        //main.repaintMap(j);
     }
 }

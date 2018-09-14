@@ -5,20 +5,27 @@ import touchepipi.metier.Joueur;
 import touchepipi.metier.Partie;
 import touchepipi.network.Serveur.Serveur;
 
+import java.util.Scanner;
+
 public class Controleur
 {
     IHM ihm;
     Partie p;
     public Controleur()
     {
-        this.p = new Partie(new Joueur("Paul"), new Joueur("Thomas"), this);
+        this.p = new Partie(this);
         this.ihm = new IHM(this);
+        Scanner sc = new Scanner(System.in);
+        while(true)
+        {
+            sc.nextLine();
+            new Joueur();
+        }
+
     }
 
     public void lancerPartie()
     {
-        this.p.getJ1().setPartie(this.p);
-        this.p.getJ2().setPartie(this.p);
         this.p.jouerTour();
     }
 
@@ -44,6 +51,5 @@ public class Controleur
     public static void main(String[] argv)
     {
         Controleur c = new Controleur();
-        c.lancerPartie();
     }
 }

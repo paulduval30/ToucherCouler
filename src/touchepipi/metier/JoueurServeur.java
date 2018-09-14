@@ -3,24 +3,23 @@ package touchepipi.metier;
 import touchepipi.network.Client.Client;
 import touchepipi.network.Client.Paquet;
 
-public class Joueur
+public class JoueurServeur
 {
     private String nom;
     private Map map;
     private Map mapAdverse;
     private Client client;
 
-    public Joueur()
+    public JoueurServeur()
     {
         this.map = new Map(10,10);
         this.mapAdverse = new Map(this.map.getNbColonne(), this.map.getNbLigne());
-        this.client = new Client();
     }
 
 
     public boolean placerBateau(int ligneDep, int ligneArr, int colonneDep, int colonneArr)
     {
-        int[][] carte = map.getCarte();
+        int[][] carte = this.map.getCarte();
         if(ligneDep == ligneArr)
             for(int i = colonneDep; i <= colonneArr; i++)
             {
@@ -31,7 +30,6 @@ public class Joueur
             {
                 carte[i][colonneDep] = 1;
             }
-        Paquet.envoyerBateau(this, ligneDep, ligneArr, colonneDep, colonneArr);
         return true;
 
     }
@@ -51,22 +49,12 @@ public class Joueur
         return map;
     }
 
-    public void tirer(int ligne, int colonne)
-    {
-        Paquet.envoyerTir(this, ligne, colonne);
-    }
-
-    public void placerJalon(int ligne, int colonne, int value)
-    {
-        this.mapAdverse.getCarte()[ligne][colonne] = value;
-    }
-
     public void setMap(Map map)
     {
         this.map = map;
     }
 
-    public Joueur getJoueur()
+    public JoueurServeur getJoueur()
     {
         return this;
     }

@@ -1,6 +1,7 @@
 package touchepipi.network.Serveur;
 
 import touchepipi.metier.Joueur;
+import touchepipi.metier.JoueurServeur;
 import touchepipi.metier.Partie;
 
 import java.net.InetSocketAddress;
@@ -57,13 +58,15 @@ public class Serveur implements Runnable
                 Socket clientSocket = this.socket.accept();
                 this.clients.add(new ClientSocket(clientSocket));
                 if(partie.getJ1() == null)
-                    partie.setJ1(new Joueur("1"));
+                    partie.setJ1(new JoueurServeur());
                 else
-                    partie.setJ2(new Joueur("2"));
+                    partie.setJ2(new JoueurServeur());
                 if(clients.size() == 2)
                 {
                     Paquet.envoyerNom(clients.get(0), partie.getJ1());
                     Paquet.envoyerNom(clients.get(1), partie.getJ2());
+                    partie.setCurrent(partie.getJ1());
+                    partie.jouerTour();
                 }
             }
             catch (Exception ex)
