@@ -8,12 +8,12 @@ public class Reception
 {
     public static void recevoirTir(String data)
     {
-
+        System.out.println("Recevoir Tir : " + data);
     }
 
     public static void recevoirBateau(String data)
     {
-
+        System.out.println("Recevoir Bateau : " + data);
     }
 
     public static void recevoirConnection(String data)

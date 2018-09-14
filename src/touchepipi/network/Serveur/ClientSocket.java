@@ -54,6 +54,10 @@ public class ClientSocket implements Runnable
         }
     }
 
+    /*
+    0 - Poser bateau
+    1 - Tirer
+     */
     @Override
     public void run()
     {
@@ -62,6 +66,14 @@ public class ClientSocket implements Runnable
             try
             {
                 String message = this.in.readUTF();
+                String[] paquet = message.split("-");
+                switch (paquet[0])
+                {
+                    case "0" : Reception.recevoirBateau(paquet[1]);
+                    case "1" : Reception.recevoirTir(paquet[1]);
+                    case "3" : Reception.recevoirFinTour(paquet[1]);
+                    case "4" : Reception.recevoirConnection(paquet[1]);
+                }
             }
             catch (Exception e)
             {

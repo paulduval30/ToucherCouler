@@ -52,6 +52,11 @@ public class Joueur
         return map;
     }
 
+    public Map getMapAdverse()
+    {
+        return this.mapAdverse;
+    }
+
     public void tirer(int ligne, int colonne)
     {
         Paquet.envoyerTir(this, ligne, colonne);
@@ -60,11 +65,6 @@ public class Joueur
     public void placerJalon(Map map, int ligne, int colonne, int value)
     {
         this.map.getCarte()[ligne][colonne] = value;
-    }
-
-    public Map getMapAdverse()
-    {
-        return this.mapAdverse;
     }
 
     public void setMap(Map map)
