@@ -14,7 +14,7 @@ public class Joueur
     {
         this.map = new Map(10,10);
         this.mapAdverse = new Map(this.map.getNbColonne(), this.map.getNbLigne());
-        this.client = new Client();
+        this.client = new Client(this);
         client.connect("localhost",25565);
     }
 

@@ -1,5 +1,7 @@
 package touchepipi.network.Client;
 
+import touchepipi.metier.Joueur;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.InetSocketAddress;
@@ -13,8 +15,10 @@ public class Client implements Runnable
 
     private DataOutputStream output;
     private DataInputStream input;
-    public Client()
+    private Joueur joueur;
+    public Client(Joueur joueur)
     {
+        this.joueur = joueur;
         try
         {
             this.socket = new Socket();
