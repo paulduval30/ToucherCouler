@@ -3,6 +3,7 @@ package touchepipi;
 import touchepipi.IHM.IHM;
 import touchepipi.metier.Joueur;
 import touchepipi.metier.Partie;
+import touchepipi.metier.PartieServeur;
 import touchepipi.network.Serveur.Serveur;
 
 import java.util.Scanner;
@@ -13,11 +14,18 @@ public class Controleur
     Partie p;
     public Controleur()
     {
-        this.p = new Partie(this);
         this.ihm = new IHM(this);
         Scanner sc = new Scanner(System.in);
-        new Joueur();
-        new Joueur();
+        System.out.println("J/S");
+        String rep = sc.nextLine();
+        if(rep.equals("S"))
+            new PartieServeur(this);
+        else
+        {
+            this.p = new Partie(this);
+            new Joueur();
+            new Joueur();
+        }
 
     }
 
