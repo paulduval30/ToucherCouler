@@ -20,7 +20,7 @@ public class IHM
     public void lirePositionBateau()
     {
         boolean diagonale = true;
-        this.afficherMap(ctrl.getPartie().getCurrent());
+        //this.afficherMap(ctrl.getPartie().getCurrent());
         Scanner sc = new Scanner(System.in);
         int ligneDep;
         int ligneArr;
@@ -47,8 +47,8 @@ public class IHM
                 if(diagonale)
                     continue;
 
-                ctrl.poserBateau(partie.getCurrent(), ligneDep, ligneArr, colonneDep, colonneArr);
-                this.afficherMap(this.ctrl.getPartie().getCurrent());
+              //  ctrl.poserBateau(partie.getCurrent(), ligneDep, ligneArr, colonneDep, colonneArr);
+              //  this.afficherMap(this.ctrl.getPartie().getCurrent());
                 sc.nextLine();
                 sc.nextLine();
 

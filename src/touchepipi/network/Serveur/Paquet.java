@@ -1,6 +1,7 @@
 package touchepipi.network.Serveur;
 
 import touchepipi.metier.Joueur;
+import touchepipi.metier.JoueurServeur;
 import touchepipi.metier.Partie;
 
 /**
@@ -8,7 +9,7 @@ import touchepipi.metier.Partie;
  */
 public class Paquet
 {
-    public static void tir(Serveur s, int celulle, Joueur j)
+    public static void tir(Serveur s, int celulle, JoueurServeur j)
     {
         s.sendAll("4-" + celulle + "," + j.getNom());
     }
@@ -24,7 +25,7 @@ public class Paquet
         s.sendAll("0-Debut");
     }
 
-    public static void envoyerNom(ClientSocket c,Joueur joueur)
+    public static void envoyerNom(ClientSocket c,JoueurServeur joueur)
     {
         c.send("1-" + joueur.getNom());
     }

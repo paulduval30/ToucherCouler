@@ -16,11 +16,8 @@ public class Controleur
         this.p = new Partie(this);
         this.ihm = new IHM(this);
         Scanner sc = new Scanner(System.in);
-        while(true)
-        {
-            sc.nextLine();
-            new Joueur();
-        }
+        new Joueur();
+        new Joueur();
 
     }
 
@@ -36,7 +33,7 @@ public class Controleur
 
     public void afficherCarte()
     {
-        ihm.afficherMap(p.getCurrent());
+       // ihm.afficherMap(p.getCurrent());
     }
     public Partie getPartie()
     {

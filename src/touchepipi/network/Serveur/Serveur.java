@@ -58,9 +58,15 @@ public class Serveur implements Runnable
                 Socket clientSocket = this.socket.accept();
                 this.clients.add(new ClientSocket(clientSocket));
                 if(partie.getJ1() == null)
-                    partie.setJ1(new JoueurServeur());
+                {
+                    partie.setJ1(new JoueurServeur(this.clients.get(0)));
+                    System.out.println("Hello J1");
+                }
                 else
-                    partie.setJ2(new JoueurServeur());
+                {
+                    System.out.println("Hello J2");
+                    partie.setJ2(new JoueurServeur(this.clients.get(1)));
+                }
                 if(clients.size() == 2)
                 {
                     Paquet.envoyerNom(clients.get(0), partie.getJ1());
