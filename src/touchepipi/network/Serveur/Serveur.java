@@ -17,9 +17,11 @@ public class Serveur implements Runnable
     private boolean running;
 
     private ArrayList<ClientSocket> clients;
+    private int nbJoueur;
 
     public Serveur(PartieServeur partie)
     {
+        nbJoueur = 0;
         Paquet.instance = this;
         Reception.instance = this;
         this.partie = partie;
@@ -58,21 +60,14 @@ public class Serveur implements Runnable
             try
             {
                 Socket clientSocket = this.socket.accept();
-                this.clients.add(new ClientSocket(clientSocket, new JoueurServeur()));
+                this.clients.add(new ClientSocket(clientSocket));
                 if(partie.getJ1() == null)
                 {
-                    partie.setJ1(clients.get(0).getJoueur());
                     System.out.println("Hello J1");
                 }
                 else
                 {
                     System.out.println("Hello J2");
-                    partie.setJ2(this.clients.get(1).getJoueur());
-                }
-                if(clients.size() == 2)
-                {
-                    Paquet.envoyerNom();
-                    partie.setCurrent(partie.getJ1());
                 }
             }
             catch (Exception ex)
@@ -113,5 +108,25 @@ public class Serveur implements Runnable
         {
             ex.printStackTrace();
         }
+    }
+
+    public int getNbJoueur()
+    {
+        return nbJoueur;
+    }
+
+    public void ajouterJoueur()
+    {
+        this.nbJoueur ++;
+    }
+
+    public ArrayList<ClientSocket> getClients()
+    {
+        return clients;
+    }
+
+    public void setRunning(boolean running)
+    {
+        this.running = running;
     }
 }

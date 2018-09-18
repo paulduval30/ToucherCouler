@@ -12,13 +12,16 @@ public class Joueur
     private boolean current;
     private String j2;
 
-    public Joueur()
+    public Joueur(String nom)
     {
+        this.j2 = "";
+        this.nom = nom;
         this.current = false;
         this.map = new Map(10,10);
         this.mapAdverse = new Map(this.map.getNbColonne(), this.map.getNbLigne());
         this.client = new Client(this);
         client.connect("localhost",25565);
+        Paquet.connection(this);
     }
 
 
@@ -93,5 +96,15 @@ public class Joueur
     public void setJ2(String j2)
     {
         this.j2 = j2;
+    }
+
+    public String getJ2()
+    {
+        return j2;
+    }
+
+    public void jouerTour()
+    {
+
     }
 }

@@ -17,7 +17,7 @@ public class Paquet
         joueur.getClient().send("0-" + ligneDep + "," + colonneDep + "," + ligneArr + "," + colonneArr + "," + joueur.getNom());
     }
 
-    public static void finDetour(Joueur joueur)
+    public static void finDeTour(Joueur joueur)
     {
         joueur.getClient().send("3-" + joueur.getNom());
     }

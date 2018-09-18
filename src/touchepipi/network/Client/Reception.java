@@ -31,7 +31,10 @@ public class Reception
     public static void recevoirTour(String data, Joueur joueur)
     {
         if(joueur.getNom().equals(data))
+        {
             joueur.setCurrent(true);
+            joueur.jouerTour();
+        }
         else
             joueur.setCurrent(false);
     }

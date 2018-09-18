@@ -50,7 +50,7 @@ public class Reception
 
     }
 
-    public static void recevoirConnection(String data, ClientSocket clientSocket)
+    public static void recevoirConnection(String data)
     {
         if(instance.getPartie().getJ1() == null)
         {
@@ -62,6 +62,19 @@ public class Reception
             instance.getPartie().setJ2(new JoueurServeur());
             instance.getPartie().getJ2().setNom(data);
         }
+
+        instance.ajouterJoueur();
+
+        System.out.println(instance.getNbJoueur());
+        if(instance.getNbJoueur() == 2)
+        {
+            instance.getPartie().setCurrent(instance.getPartie().getJ1());
+            instance.getClients().get(0).setJoueur(instance.getPartie().getJ1());
+            instance.getClients().get(1).setJoueur(instance.getPartie().getJ2());
+            instance.setRunning(false);
+            Paquet.envoyerNom();
+        }
+
     }
 
     public static void recevoirFinTour(String data, ClientSocket clientSocket)
