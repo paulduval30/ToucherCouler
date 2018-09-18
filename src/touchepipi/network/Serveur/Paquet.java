@@ -9,24 +9,26 @@ import touchepipi.metier.Partie;
  */
 public class Paquet
 {
-    public static void tir(Serveur s, int celulle, JoueurServeur j)
+    public static Serveur instance;
+
+    public static void tir(int ligne, int colonne, int celulle, JoueurServeur j)
     {
-        s.sendAll("4-" + celulle + "," + j.getNom());
+        instance.sendAll("4-" + ligne + "," + colonne + "," + celulle + "," + j.getNom());
     }
 
 
-    public static void envoyerTour(Serveur s, Partie partie)
+    public static void envoyerTour(Partie partie)
     {
-        s.sendAll("3-" + partie.getCurrent().getNom());
+        instance.sendAll("3-" + partie.getCurrent().getNom());
     }
 
-    public static void demarerPartie(Serveur s)
+    public static void demarerPartie()
     {
-        s.sendAll("0-Debut");
+        instance.sendAll("0-Debut");
     }
 
-    public static void envoyerNom(Serveur s)
+    public static void envoyerNom()
     {
-        s.sendAll("1-1:" + s.getPartie().getJ1().getNom()+",2:"+s.getPartie().getJ2().getNom());
+        instance.sendAll("1-" + instance.getPartie().getJ1().getNom()+","+instance.getPartie().getJ2().getNom());
     }
 }

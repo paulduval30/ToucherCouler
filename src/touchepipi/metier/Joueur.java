@@ -9,9 +9,12 @@ public class Joueur
     private Map map;
     private Map mapAdverse;
     private Client client;
+    private boolean current;
+    private String j2;
 
     public Joueur()
     {
+        this.current = false;
         this.map = new Map(10,10);
         this.mapAdverse = new Map(this.map.getNbColonne(), this.map.getNbLigne());
         this.client = new Client(this);
@@ -80,5 +83,15 @@ public class Joueur
     public Client getClient()
     {
         return this.client;
+    }
+
+    public void setCurrent(boolean current)
+    {
+        this.current = current;
+    }
+
+    public void setJ2(String j2)
+    {
+        this.j2 = j2;
     }
 }

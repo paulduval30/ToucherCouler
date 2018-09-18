@@ -16,6 +16,8 @@ public class Client implements Runnable
     private DataOutputStream output;
     private DataInputStream input;
     private Joueur joueur;
+
+
     public Client(Joueur joueur)
     {
         this.joueur = joueur;
@@ -92,5 +94,4 @@ public class Client implements Runnable
 
         this.running = false;
     }
-
 }

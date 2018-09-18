@@ -20,6 +20,8 @@ public class Serveur implements Runnable
 
     public Serveur(PartieServeur partie)
     {
+        Paquet.instance = this;
+        Reception.instance = this;
         this.partie = partie;
         try
         {
@@ -69,7 +71,7 @@ public class Serveur implements Runnable
                 }
                 if(clients.size() == 2)
                 {
-                    Paquet.envoyerNom(this);
+                    Paquet.envoyerNom();
                     partie.setCurrent(partie.getJ1());
                 }
             }
