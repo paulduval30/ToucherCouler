@@ -1,7 +1,6 @@
 package touchepipi.IHM;
 
 import touchepipi.Controleur;
-import touchepipi.metier.Joueur;
 import touchepipi.metier.Partie;
 import touchepipi.util.Utilitaire;
 
@@ -10,7 +9,6 @@ import java.util.Scanner;
 public class IHM
 {
     private Controleur ctrl;
-    private MainFrame main;
 
     public IHM(Controleur controlleur)
     {
@@ -20,7 +18,6 @@ public class IHM
     public void lirePositionBateau()
     {
         boolean diagonale = true;
-        //this.afficherMap(ctrl.getPartie().getCurrent());
         Scanner sc = new Scanner(System.in);
         int ligneDep;
         int ligneArr;
@@ -58,10 +55,5 @@ public class IHM
                 e.printStackTrace();
             }
         }
-    }
-
-    public void afficherMap(Joueur j)
-    {
-        //main.repaintMap(j);
     }
 }

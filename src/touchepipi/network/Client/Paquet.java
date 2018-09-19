@@ -9,15 +9,15 @@ public class Paquet
 {
     public static void envoyerTir(Joueur joueur, int ligne, int colonne)
     {
-        joueur.getClient().send("1 -" + ligne + "," + colonne);
+        joueur.getClient().send("1 -" + ligne + "," + colonne + "," + joueur.getNom());
     }
 
     public static void envoyerBateau(Joueur joueur, int ligneDep, int ligneArr, int colonneDep, int colonneArr)
     {
-        joueur.getClient().send("0-" + ligneDep + "," + colonneDep + "," + ligneArr + "," + colonneArr);
+        joueur.getClient().send("0-" + ligneDep + "," + colonneDep + "," + ligneArr + "," + colonneArr + "," + joueur.getNom());
     }
 
-    public static void finDetour(Joueur joueur)
+    public static void finDeTour(Joueur joueur)
     {
         joueur.getClient().send("3-" + joueur.getNom());
     }

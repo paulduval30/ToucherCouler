@@ -1,6 +1,7 @@
 package touchepipi;
 
 import touchepipi.IHM.IHM;
+import touchepipi.IHM.MainFrame;
 import touchepipi.metier.Joueur;
 import touchepipi.metier.Partie;
 import touchepipi.metier.PartieServeur;
@@ -22,9 +23,10 @@ public class Controleur
             new PartieServeur(this);
         else
         {
-            this.p = new Partie(this);
-            new Joueur();
-            new Joueur();
+            MainFrame m1 = new MainFrame(new Joueur("Ah"));
+            MainFrame m2 = new MainFrame(new Joueur("Bon"));
+            new Thread(m1).run();
+            new Thread(m2).run();
         }
 
     }

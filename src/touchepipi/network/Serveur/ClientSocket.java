@@ -18,9 +18,8 @@ public class ClientSocket implements Runnable
     private boolean running;
     private JoueurServeur joueur;
 
-    public ClientSocket(Socket socket, JoueurServeur joueur)
+    public ClientSocket(Socket socket)
     {
-        this.joueur = joueur;
         this.socket = socket;
         try
         {
@@ -54,10 +53,6 @@ public class ClientSocket implements Runnable
         }
     }
 
-    /*
-    0 - Poser bateau
-    1 - Tirer
-     */
     @Override
     public void run()
     {
@@ -69,9 +64,9 @@ public class ClientSocket implements Runnable
                 String[] paquet = message.split("-");
                 switch (paquet[0])
                 {
-                    case "0" : Reception.recevoirBateau(paquet[1]);
-                    case "1" : Reception.recevoirTir(paquet[1]);
-                    case "3" : Reception.recevoirFinTour(paquet[1]);
+                    case "0" : Reception.recevoirBateau(paquet[1], this);
+                    case "1" : Reception.recevoirTir(paquet[1], this);
+                    case "3" : Reception.recevoirFinTour(paquet[1], this);
                     case "4" : Reception.recevoirConnection(paquet[1]);
                 }
             }
@@ -98,5 +93,10 @@ public class ClientSocket implements Runnable
     public JoueurServeur getJoueur()
     {
         return joueur;
+    }
+
+    public void setJoueur(JoueurServeur j)
+    {
+        this.joueur = j;
     }
 }
