@@ -32,11 +32,13 @@ public class PanelMap extends JPanel
         g.setColor(Color.GREEN);
         Font f = new Font(Font.SANS_SERIF,Font.BOLD,30);
         g.setFont(f);
-        g.drawString(j.getJ2(),100,30);
+        g.drawString(j.getJ2(),carte.length * 50 + 50,30);
         for(int i = 0; i < carte.length; i++)
         {
             for(int j = 0; j < carte[i].length; j++)
             {
+                g.setColor(Color.white);
+                g.drawRect(carte.length * 50 + 50 + 5 * 50, 30 + i * 50, 50, 50);
                 if(carte[i][j] == 0)
                     g.setColor(Color.cyan);
                 if(carte[i][j] == 1)
@@ -45,7 +47,7 @@ public class PanelMap extends JPanel
                     g.setColor(Color.red);
                 if(carte[i][j] == 3)
                     g.setColor(Color.blue);
-                g.fillRect(carte.length * 50 + 50 + j * 50,30 + i * 50, 50, 50);
+                g.fillRect(carte.length * 50 + 50 + j * 50 + 1,30 + i * 50 + 1, 49, 49);
             }
         }
     }
@@ -69,7 +71,7 @@ public class PanelMap extends JPanel
                     g.setColor(Color.red);
                 if(carte[i][j] == 3)
                     g.setColor(Color.blue);
-                g.fillRect(j * 50, 30 + i * 50, 50, 50);
+                g.fillRect(j * 50 + 1 , 30 + i * 50 + 1, 49, 49);
             }
         }
     }

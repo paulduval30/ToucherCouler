@@ -13,13 +13,13 @@ public class Paquet
 
     public static void tir(int ligne, int colonne, int celulle, JoueurServeur j)
     {
-        instance.sendAll("4-" + ligne + "," + colonne + "," + celulle + "," + j.getNom());
+        instance.sendAll("3-" + ligne + "," + colonne + "," + celulle + "," + j.getNom());
     }
 
 
     public static void envoyerTour(Partie partie)
     {
-        instance.sendAll("3-" + partie.getCurrent().getNom());
+        instance.sendAll("2-" + partie.getCurrent().getNom());
     }
 
     public static void demarerPartie()

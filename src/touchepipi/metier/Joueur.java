@@ -3,6 +3,8 @@ package touchepipi.metier;
 import touchepipi.network.Client.Client;
 import touchepipi.network.Client.Paquet;
 
+import java.util.ArrayList;
+
 public class Joueur
 {
     private String nom;
@@ -12,8 +14,17 @@ public class Joueur
     private boolean current;
     private String j2;
 
+    private ArrayList<Integer> bateau;
+
     public Joueur(String nom)
     {
+        this.bateau = new ArrayList<>();
+        bateau.add(5);
+        bateau.add(4);
+        bateau.add(3);
+        bateau.add(2);
+        bateau.add(1);
+        bateau.add(1);
         this.j2 = "";
         this.nom = nom;
         this.current = false;
@@ -25,20 +36,20 @@ public class Joueur
     }
 
 
-    public boolean placerBateau(int ligneDep, int ligneArr, int colonneDep, int colonneArr)
+    public boolean placerBateau(int ligneDep, int colonneDep, int taille, char dir)
     {
         int[][] carte = map.getCarte();
-        if(ligneDep == ligneArr)
-            for(int i = colonneDep; i <= colonneArr; i++)
+        if(dir == 'H')
+            for(int i = colonneDep; i <= colonneDep +  taille; i++)
             {
-                carte[ligneDep][i] = 1;
+                carte[ligneDep][i] = taille;
             }
-        if(colonneDep == colonneArr)
-            for(int i = ligneDep; i <= ligneArr; i++)
+        if(dir == 'V')
+            for(int i = ligneDep; i <= ligneDep + taille; i++)
             {
-                carte[i][colonneDep] = 1;
+                carte[i][colonneDep] = taille;
             }
-        Paquet.envoyerBateau(this, ligneDep, ligneArr, colonneDep, colonneArr);
+        Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep + taille, taille );
         return true;
 
     }

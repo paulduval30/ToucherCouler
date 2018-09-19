@@ -12,9 +12,9 @@ public class Paquet
         joueur.getClient().send("1 -" + ligne + "," + colonne + "," + joueur.getNom());
     }
 
-    public static void envoyerBateau(Joueur joueur, int ligneDep, int ligneArr, int colonneDep, int colonneArr)
+    public static void envoyerBateau(Joueur joueur, int ligneDep, int ligneArr, int colonneDep, int colonneArr, int taille)
     {
-        joueur.getClient().send("0-" + ligneDep + "," + colonneDep + "," + ligneArr + "," + colonneArr + "," + joueur.getNom());
+        joueur.getClient().send("0-" + ligneDep + "," + colonneDep + "," + ligneArr + "," + colonneArr + "," + taille + "," + joueur.getNom());
     }
 
     public static void finDeTour(Joueur joueur)

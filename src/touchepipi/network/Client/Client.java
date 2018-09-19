@@ -75,8 +75,13 @@ public class Client implements Runnable
                 String data = sData[1];
                 switch (paquet)
                 {
+                    case "0" : Reception.recevoirDebut(data, this.joueur);
+                        break;
                     case "1" : Reception.recevoirNom(data, this.joueur);
                         break;
+                    case "2" : Reception.recevoirTour(data, this.joueur);
+                        break;
+                    case "3" : Reception.recevoirTir(data, this.joueur);
                     default:
                         break;
                 }
