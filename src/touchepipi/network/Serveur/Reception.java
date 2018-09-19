@@ -20,9 +20,9 @@ public class Reception
         {
             int[][] carte = clientSocket.getJoueur().getMap().getCarte();
             if(carte[ligne][colonne] == 1)
-                carte[ligne][colonne] = 2;
+                carte[ligne][colonne] = -1;
             else
-                carte[ligne][colonne] = 3;
+                carte[ligne][colonne] = -2;
             Paquet.tir(ligne, colonne, carte[ligne][colonne], clientSocket.getJoueur());
         }
     }

@@ -1,7 +1,6 @@
 package touchepipi.IHM;
 
 import touchepipi.Controleur;
-import touchepipi.metier.Partie;
 import touchepipi.util.Utilitaire;
 
 import java.util.Scanner;
@@ -23,7 +22,6 @@ public class IHM
         int ligneArr;
         int colonneDep;
         int colonneArr;
-        Partie partie = ctrl.getPartie();
         while(diagonale)
         {
             try

@@ -52,7 +52,7 @@ public class Controleur
 
     public void poserBateau(Joueur current, int ligneDep, int ligneArr, int colonneDep, int colonneArr)
     {
-        current.placerBateau(ligneDep, ligneArr, colonneDep, colonneArr);
+        //current.placerBateau(ligneDep, ligneArr, colonneDep, colonneArr);
     }
 
     public static void main(String[] argv)

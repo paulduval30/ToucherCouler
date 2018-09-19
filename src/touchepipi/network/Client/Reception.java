@@ -17,9 +17,9 @@ public class Reception
         String nom = sData[3];
 
         if(nom.equals(joueur.getNom()))
-            joueur.getMap().getCarte()[ligne][colonne] = celulle;
+            joueur.placerJalon(joueur.getMap(), ligne, colonne, celulle);
         else
-            joueur.getMapAdverse().getCarte()[ligne][colonne] = celulle;
+            joueur.placerJalon(joueur.getMapAdverse(), ligne, colonne, celulle);
 
     }
 
@@ -49,5 +49,13 @@ public class Reception
             joueur.setJ2(j2);
         else
             joueur.setJ2(j1);
+    }
+
+    public static void recevoirDebut(String data, Joueur joueur)
+    {
+        for(int i = 0; i < 5; i++)
+        {
+
+        }
     }
 }
