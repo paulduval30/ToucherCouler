@@ -4,14 +4,19 @@ import touchepipi.metier.Joueur;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class PanelMap extends JPanel
+public class PanelMap extends JPanel implements MouseListener
 {
+    private final int RECT_SIZE = 50;
+
     private Joueur j;
 
     PanelMap(Joueur j)
     {
         this.j = j;
+        this.addMouseListener(this);
     }
 
     public void setJoueur(Joueur j)
@@ -71,8 +76,52 @@ public class PanelMap extends JPanel
                     g.setColor(Color.red);
                 if(carte[i][j] == 3)
                     g.setColor(Color.blue);
-                g.fillRect(j * 50 + 1 , 30 + i * 50 + 1, 49, 49);
+                g.fillRect(j * RECT_SIZE + 1 , 30 + i * RECT_SIZE + 1, RECT_SIZE-1, RECT_SIZE-1);
             }
         }
+    }
+
+    private int getRectCol(int mousePosX)
+    {
+        System.out.println("X : " + mousePosX);
+        return mousePosX / RECT_SIZE;
+    }
+
+    private int getRectLig(int mousePosY)
+    {
+        System.out.println( "Y : " + mousePosY);
+        return (mousePosY -30) / RECT_SIZE;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e)
+    {
+        int rectLig = getRectCol(e.getX());
+        int rectCol = getRectLig(e.getY());
+        System.out.println("lig : " + rectLig + " col : " + rectCol);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e)
+    {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e)
+    {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e)
+    {
+
     }
 }
