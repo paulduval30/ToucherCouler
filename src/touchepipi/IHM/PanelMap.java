@@ -11,6 +11,9 @@ import java.awt.event.MouseListener;
 public class PanelMap extends JPanel implements MouseListener
 {
     private final int RECT_SIZE = 50;
+    private final int DISTANCE_BETWEEN_MAPS = 50;
+    private final int VERTICAL_PADDING = 30;
+    private final int HORIZONTAL_PADDING = 0;
 
     private Joueur j;
 
@@ -44,7 +47,7 @@ public class PanelMap extends JPanel implements MouseListener
             for(int j = 0; j < carte[i].length; j++)
             {
                 g.setColor(Color.white);
-                g.drawRect(carte.length * 50 + 50 + 5 * 50, 30 + i * 50, 50, 50);
+                g.drawRect(carte.length * RECT_SIZE + DISTANCE_BETWEEN_MAPS + 5 * 50, VERTICAL_PADDING + i * 50, 50, 50);
                 if(carte[i][j] == 0)
                     g.setColor(Color.cyan);
                 if(carte[i][j] == 1)
@@ -53,7 +56,8 @@ public class PanelMap extends JPanel implements MouseListener
                     g.setColor(Color.red);
                 if(carte[i][j] == 3)
                     g.setColor(Color.blue);
-                g.fillRect(carte.length * 50 + 50 + j * 50 + 1,30 + i * 50 + 1, 49, 49);
+                g.fillRect(carte.length * RECT_SIZE + DISTANCE_BETWEEN_MAPS + j * RECT_SIZE + 1,
+                        VERTICAL_PADDING + i * RECT_SIZE + 1, RECT_SIZE - 1, RECT_SIZE - 1);
             }
         }
     }
@@ -77,7 +81,8 @@ public class PanelMap extends JPanel implements MouseListener
                     g.setColor(Color.red);
                 if(carte[i][j] == 3)
                     g.setColor(Color.blue);
-                g.fillRect(j * RECT_SIZE + 1 , 30 + i * RECT_SIZE + 1, RECT_SIZE-1, RECT_SIZE-1);
+                g.fillRect(j * RECT_SIZE + 1 , VERTICAL_PADDING + i * RECT_SIZE + 1,
+                        RECT_SIZE-1, RECT_SIZE-1);
             }
         }
     }
@@ -85,13 +90,16 @@ public class PanelMap extends JPanel implements MouseListener
     private int getRectCol(int mousePosX)
     {
         System.out.println("X : " + mousePosX);
-        return mousePosX / RECT_SIZE;
+        if (mousePosX > HORIZONTAL_PADDING + RECT_SIZE*10 + DISTANCE_BETWEEN_MAPS)
+            return (mousePosX - HORIZONTAL_PADDING + RECT_SIZE*10 + DISTANCE_BETWEEN_MAPS) / RECT_SIZE;
+        else
+            return mousePosX / RECT_SIZE;
     }
 
     private int getRectLig(int mousePosY)
     {
         System.out.println( "Y : " + mousePosY);
-        return (mousePosY - 30) / RECT_SIZE;
+        return (mousePosY - VERTICAL_PADDING) / RECT_SIZE;
     }
 
     @Override
