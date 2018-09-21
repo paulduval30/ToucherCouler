@@ -9,7 +9,7 @@ public class Paquet
 {
     public static void envoyerTir(Joueur joueur, int ligne, int colonne)
     {
-        joueur.getClient().send("1 -" + ligne + "," + colonne + "," + joueur.getNom());
+        joueur.getClient().send("1-" + ligne + "," + colonne + "," + joueur.getNom());
     }
 
     public static void envoyerBateau(Joueur joueur, int ligneDep, int ligneArr, int colonneDep, int colonneArr, int taille)

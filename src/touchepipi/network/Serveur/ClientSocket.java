@@ -61,6 +61,7 @@ public class ClientSocket implements Runnable
             try
             {
                 String message = this.in.readUTF();
+                System.out.println(message);
                 String[] paquet = message.split("-");
                 switch (paquet[0])
                 {

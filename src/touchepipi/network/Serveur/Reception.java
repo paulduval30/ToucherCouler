@@ -29,12 +29,14 @@ public class Reception
 
     public static void recevoirBateau(String data, ClientSocket clientSocket)
     {
+
         String[] sData = data.split(",");
         int ligneDep = Integer.parseInt(sData[0]);
-        int ligneArr = Integer.parseInt(sData[1]);
-        int colonneDep = Integer.parseInt(sData[2]);
+        int colonneDep = Integer.parseInt(sData[1]);
+        int ligneArr = Integer.parseInt(sData[2]);
         int colonneArr = Integer.parseInt(sData[3]);
-        String nom = sData[4];
+        int taille = Integer.parseInt(sData[4]);
+        String nom = sData[5];
 
         JoueurServeur j1 = instance.getPartie().getJ1();
         JoueurServeur j2 = instance.getPartie().getJ2();
@@ -46,7 +48,12 @@ public class Reception
             carte = j2.getMap().getCarte();
         for(int i = ligneDep; i <= ligneArr; i++)
             for(int j = colonneDep; j <= colonneArr; j++)
-                carte[i][j] = 1;
+            {
+                carte[i][j] = taille;
+                if(colonneArr !=  colonneDep && (j == colonneArr || j == colonneDep)
+                        || ligneArr != ligneDep && (i == ligneArr || i == ligneDep))
+                    carte[i][j] += 100;
+            }
 
     }
 
@@ -65,14 +72,16 @@ public class Reception
 
         instance.ajouterJoueur();
 
-        System.out.println(instance.getNbJoueur());
         if(instance.getNbJoueur() == 2)
         {
             instance.getPartie().setCurrent(instance.getPartie().getJ1());
             instance.getClients().get(0).setJoueur(instance.getPartie().getJ1());
             instance.getClients().get(1).setJoueur(instance.getPartie().getJ2());
             instance.setRunning(false);
+            instance.getPartie().setCurrent(instance.getPartie().getJ1());
             Paquet.envoyerNom();
+            Paquet.demarerPartie();
+            Paquet.envoyerTour(instance.getPartie());
         }
 
     }
@@ -86,6 +95,7 @@ public class Reception
             instance.getPartie().setCurrent(j2);
         else
             instance.getPartie().setCurrent(j1);
+        Paquet.envoyerTour(instance.getPartie() );
     }
 
 

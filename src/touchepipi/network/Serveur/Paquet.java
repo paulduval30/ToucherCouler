@@ -3,6 +3,7 @@ package touchepipi.network.Serveur;
 import touchepipi.metier.Joueur;
 import touchepipi.metier.JoueurServeur;
 import touchepipi.metier.Partie;
+import touchepipi.metier.PartieServeur;
 
 /**
  * Classe d'envoie des paquets Serveur
@@ -17,7 +18,7 @@ public class Paquet
     }
 
 
-    public static void envoyerTour(Partie partie)
+    public static void envoyerTour(PartieServeur partie)
     {
         instance.sendAll("2-" + partie.getCurrent().getNom());
     }

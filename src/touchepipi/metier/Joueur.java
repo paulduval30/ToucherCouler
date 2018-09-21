@@ -1,5 +1,6 @@
 package touchepipi.metier;
 
+import touchepipi.IHM.IHM;
 import touchepipi.network.Client.Client;
 import touchepipi.network.Client.Paquet;
 
@@ -35,7 +36,16 @@ public class Joueur
         Paquet.connection(this);
     }
 
-
+    public void initPartie()
+    {
+/**        for(Integer i : bateau)
+        {
+            int ligne = IHM.lireInt();
+            int colonne = IHM.lireInt();
+            char dir = IHM.lireDir();
+            placerBateau(ligne, colonne, i, dir);
+        }*/
+    }
     public boolean placerBateau(int ligneDep, int colonneDep, int taille, char dir)
     {
         int[][] carte = map.getCarte();
@@ -43,11 +53,16 @@ public class Joueur
             for(int i = colonneDep; i <= colonneDep +  taille; i++)
             {
                 carte[ligneDep][i] = taille;
+                if(i == colonneDep || i == colonneDep + taille)
+                    carte[ligneDep][i] += 100;
+
             }
         if(dir == 'V')
             for(int i = ligneDep; i <= ligneDep + taille; i++)
             {
                 carte[i][colonneDep] = taille;
+                if(i == colonneDep || i == colonneDep + taille)
+                    carte[i][colonneDep] += 100;
             }
         Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep + taille, taille );
         return true;
@@ -74,10 +89,6 @@ public class Joueur
         return this.mapAdverse;
     }
 
-    public void tirer(int ligne, int colonne)
-    {
-        Paquet.envoyerTir(this, ligne, colonne);
-    }
 
     public void placerJalon(Map map, int ligne, int colonne, int value)
     {
@@ -117,5 +128,21 @@ public class Joueur
     public void jouerTour()
     {
 
+    }
+
+    public boolean getCurrent()
+    {
+        return current;
+    }
+
+    public void envoyerTir(int rectLig, int rectCol)
+    {
+        Paquet.envoyerTir(this, rectLig, rectCol);
+        this.finTour();
+    }
+
+    private void finTour()
+    {
+        Paquet.finDeTour(this);
     }
 }

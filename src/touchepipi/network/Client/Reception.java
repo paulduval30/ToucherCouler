@@ -53,9 +53,6 @@ public class Reception
 
     public static void recevoirDebut(String data, Joueur joueur)
     {
-        for(int i = 0; i < 5; i++)
-        {
-
-        }
+        joueur.initPartie();
     }
 }

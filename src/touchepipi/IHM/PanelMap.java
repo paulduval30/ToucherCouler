@@ -1,6 +1,7 @@
 package touchepipi.IHM;
 
 import touchepipi.metier.Joueur;
+import touchepipi.network.Client.Paquet;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,7 +91,7 @@ public class PanelMap extends JPanel implements MouseListener
     private int getRectLig(int mousePosY)
     {
         System.out.println( "Y : " + mousePosY);
-        return (mousePosY -30) / RECT_SIZE;
+        return (mousePosY - 30) / RECT_SIZE;
     }
 
     @Override
@@ -102,9 +103,11 @@ public class PanelMap extends JPanel implements MouseListener
     @Override
     public void mousePressed(MouseEvent e)
     {
-        int rectLig = getRectCol(e.getX());
-        int rectCol = getRectLig(e.getY());
+        int rectCol = getRectCol(e.getX());
+        int rectLig = getRectLig(e.getY());
         System.out.println("lig : " + rectLig + " col : " + rectCol);
+        if(j.getCurrent())
+            j.envoyerTir(rectLig, rectCol);
     }
 
     @Override

@@ -54,4 +54,18 @@ public class IHM
             }
         }
     }
+
+    public static int lireInt()
+    {
+        Scanner sc = new Scanner(System.in);
+        int ret = sc.nextInt();
+        return ret;
+    }
+
+    public static char lireDir()
+    {
+        Scanner sc = new Scanner(System.in);
+        char ret = sc.nextLine().charAt(0);
+        return ret;
+    }
 }
