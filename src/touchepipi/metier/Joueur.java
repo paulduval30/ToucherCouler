@@ -92,7 +92,7 @@ public class Joueur
 
     public void placerJalon(Map map, int ligne, int colonne, int value)
     {
-        this.map.getCarte()[ligne][colonne] = value;
+        map.getCarte()[ligne][colonne] = value;
     }
 
     public void setMap(Map map)

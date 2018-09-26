@@ -15,15 +15,25 @@ public class Reception
         int ligne = Integer.parseInt(sData[0]);
         int colonne = Integer.parseInt(sData[1]);
         String nom = sData[2];
+        JoueurServeur j;
 
-        if(!nom.equals(clientSocket.getJoueur().getNom()))
+        for(ClientSocket c : instance.getClients())
         {
-            int[][] carte = clientSocket.getJoueur().getMap().getCarte();
-            if(carte[ligne][colonne] == 1)
-                carte[ligne][colonne] = -1;
-            else
-                carte[ligne][colonne] = -2;
-            Paquet.tir(ligne, colonne, carte[ligne][colonne], clientSocket.getJoueur());
+            String pseudo = c.getJoueur().getNom();
+            if(!nom.equals(pseudo))
+            {
+                int[][] carte = clientSocket.getJoueur().getMap().getCarte();
+                if(carte[ligne][colonne] == 1)
+                    carte[ligne][colonne] = -1;
+                else
+                    carte[ligne][colonne] = -2;
+                if(c.getJoueur() == instance.getPartie().getJ1())
+                    j = instance.getPartie().getJ2();
+                else
+                    j = instance.getPartie().getJ1();
+
+                Paquet.tir(ligne, colonne, carte[ligne][colonne], j);
+            }
         }
     }
 

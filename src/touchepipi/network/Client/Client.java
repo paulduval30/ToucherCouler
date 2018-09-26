@@ -70,7 +70,7 @@ public class Client implements Runnable
             {
                 String message = input.readUTF();
                 System.out.println(message);
-                String[] sData = message.split("-");
+                String[] sData = message.split("->");
                 String paquet = sData[0];
                 String data = sData[1];
                 switch (paquet)

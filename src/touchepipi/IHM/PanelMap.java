@@ -73,10 +73,10 @@ public class PanelMap extends JPanel implements MouseListener
                     g.setColor(Color.cyan);
                 if(carte[i][j] == 1)
                     g.setColor(Color.gray);
-                if(carte[i][j] == 2)
+                if(carte[i][j] == -1)
                     g.setColor(Color.red);
-                if(carte[i][j] == 3)
-                    g.setColor(Color.blue);
+                if(carte[i][j] == -2)
+                    g.setColor(Color.pink);
                 g.fillRect(j * RECT_SIZE + 1 , 30 + i * RECT_SIZE + 1, RECT_SIZE-1, RECT_SIZE-1);
             }
         }
@@ -84,13 +84,11 @@ public class PanelMap extends JPanel implements MouseListener
 
     private int getRectCol(int mousePosX)
     {
-        System.out.println("X : " + mousePosX);
         return mousePosX / RECT_SIZE;
     }
 
     private int getRectLig(int mousePosY)
     {
-        System.out.println( "Y : " + mousePosY);
         return (mousePosY - 30) / RECT_SIZE;
     }
 
@@ -105,7 +103,6 @@ public class PanelMap extends JPanel implements MouseListener
     {
         int rectCol = getRectCol(e.getX());
         int rectLig = getRectLig(e.getY());
-        System.out.println("lig : " + rectLig + " col : " + rectCol);
         if(j.getCurrent())
             j.envoyerTir(rectLig, rectCol);
     }

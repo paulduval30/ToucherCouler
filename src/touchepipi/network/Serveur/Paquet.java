@@ -14,22 +14,22 @@ public class Paquet
 
     public static void tir(int ligne, int colonne, int celulle, JoueurServeur j)
     {
-        instance.sendAll("3-" + ligne + "," + colonne + "," + celulle + "," + j.getNom());
+        instance.sendAll("3->" + ligne + "," + colonne + "," + celulle + "," + j.getJoueur().getNom());
     }
 
 
     public static void envoyerTour(PartieServeur partie)
     {
-        instance.sendAll("2-" + partie.getCurrent().getNom());
+        instance.sendAll("2->" + partie.getCurrent().getNom());
     }
 
     public static void demarerPartie()
     {
-        instance.sendAll("0-Debut");
+        instance.sendAll("0->Debut");
     }
 
     public static void envoyerNom()
     {
-        instance.sendAll("1-" + instance.getPartie().getJ1().getNom()+","+instance.getPartie().getJ2().getNom());
+        instance.sendAll("1->²" + instance.getPartie().getJ1().getNom()+","+instance.getPartie().getJ2().getNom());
     }
 }

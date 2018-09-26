@@ -17,10 +17,9 @@ public class Reception
         String nom = sData[3];
 
         if(nom.equals(joueur.getNom()))
-            joueur.placerJalon(joueur.getMap(), ligne, colonne, celulle);
-        else
             joueur.placerJalon(joueur.getMapAdverse(), ligne, colonne, celulle);
-
+        else
+            joueur.placerJalon(joueur.getMap(), ligne, colonne, celulle);
     }
 
     public static void recevoirGagnant(String data)

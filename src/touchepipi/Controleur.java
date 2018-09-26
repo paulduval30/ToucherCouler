@@ -21,12 +21,16 @@ public class Controleur
         String rep = sc.nextLine();
         if(rep.equals("S"))
             new PartieServeur(this);
-        else
+        else if(rep.equals("J1"))
         {
             MainFrame m1 = new MainFrame(new Joueur("Ah"));
-            MainFrame m2 = new MainFrame(new Joueur("Bon"));
             new Thread(m1).run();
+        }
+        else
+        {
+            MainFrame m2 = new MainFrame(new Joueur("Bon"));
             new Thread(m2).run();
+
         }
 
     }

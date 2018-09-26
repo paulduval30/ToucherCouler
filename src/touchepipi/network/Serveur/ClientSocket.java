@@ -62,7 +62,7 @@ public class ClientSocket implements Runnable
             {
                 String message = this.in.readUTF();
                 System.out.println(message);
-                String[] paquet = message.split("-");
+                String[] paquet = message.split("->");
                 switch (paquet[0])
                 {
                     case "0" : Reception.recevoirBateau(paquet[1], this);
