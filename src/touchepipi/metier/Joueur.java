@@ -4,6 +4,7 @@ import touchepipi.IHM.IHM;
 import touchepipi.network.Client.Client;
 import touchepipi.network.Client.Paquet;
 
+import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 
 public class Joueur
@@ -20,12 +21,12 @@ public class Joueur
     public Joueur(String nom)
     {
         this.bateau = new ArrayList<>();
-        bateau.add(5);
-        bateau.add(4);
-        bateau.add(3);
-        bateau.add(2);
-        bateau.add(1);
-        bateau.add(1);
+        bateau.add(50);
+        bateau.add(40);
+        bateau.add(30);
+        bateau.add(20);
+        bateau.add(10);
+        bateau.add(10);
         this.j2 = "";
         this.nom = nom;
         this.current = false;
@@ -46,25 +47,26 @@ public class Joueur
             placerBateau(ligne, colonne, i, dir);
         }*/
     }
-    public boolean placerBateau(int ligneDep, int colonneDep, int taille, char dir)
+    public boolean placerBateau(int ligneDep, int colonneDep, char dir)
     {
+        int taille = bateau.remove(0) / 10;
         int[][] carte = map.getCarte();
         if(dir == 'H')
-            for(int i = colonneDep; i <= colonneDep +  taille; i++)
+            for(int i = colonneDep; i < colonneDep +  taille; i++)
             {
-                carte[ligneDep][i] = taille;
+                carte[ligneDep][i] = taille * 10;
                 if(i == colonneDep || i == colonneDep + taille)
                     carte[ligneDep][i] += 100;
 
             }
         if(dir == 'V')
-            for(int i = ligneDep; i <= ligneDep + taille; i++)
+            for(int i = ligneDep; i < ligneDep + taille; i++)
             {
-                carte[i][colonneDep] = taille;
+                carte[i][colonneDep] = taille * 10;
                 if(i == colonneDep || i == colonneDep + taille)
                     carte[i][colonneDep] += 100;
             }
-        Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep + taille, taille );
+        Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep + taille, taille * 10 );
         return true;
 
     }
@@ -144,5 +146,10 @@ public class Joueur
     private void finTour()
     {
         Paquet.finDeTour(this);
+    }
+
+    public ArrayList<Integer> getBateaux()
+    {
+        return this.bateau;
     }
 }

@@ -1,7 +1,5 @@
 package touchepipi.network.Serveur;
 
-import touchepipi.metier.JoueurServeur;
-import touchepipi.metier.Partie;
 import touchepipi.metier.PartieServeur;
 
 import java.net.InetSocketAddress;

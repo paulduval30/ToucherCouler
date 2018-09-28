@@ -66,9 +66,15 @@ public class ClientSocket implements Runnable
                 switch (paquet[0])
                 {
                     case "0" : Reception.recevoirBateau(paquet[1], this);
+                        break;
                     case "1" : Reception.recevoirTir(paquet[1], this);
+                        break;
                     case "3" : Reception.recevoirFinTour(paquet[1], this);
+                        break;
                     case "4" : Reception.recevoirConnection(paquet[1]);
+                        break;
+                    default:
+                        break;
                 }
             }
             catch (Exception e)

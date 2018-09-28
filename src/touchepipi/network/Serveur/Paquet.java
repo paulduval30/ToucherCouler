@@ -1,8 +1,6 @@
 package touchepipi.network.Serveur;
 
-import touchepipi.metier.Joueur;
 import touchepipi.metier.JoueurServeur;
-import touchepipi.metier.Partie;
 import touchepipi.metier.PartieServeur;
 
 /**

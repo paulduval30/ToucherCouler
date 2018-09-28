@@ -11,6 +11,7 @@ public class Reception
     public static Serveur instance;
     public static void recevoirTir(String data, ClientSocket clientSocket)
     {
+        System.out.println("TIR");
         String[] sData = data.split(",");
         int ligne = Integer.parseInt(sData[0]);
         int colonne = Integer.parseInt(sData[1]);
@@ -23,7 +24,7 @@ public class Reception
             if(!nom.equals(pseudo))
             {
                 int[][] carte = clientSocket.getJoueur().getMap().getCarte();
-                if(carte[ligne][colonne] == 1)
+                if(carte[ligne][colonne] / 10 >= 1)
                     carte[ligne][colonne] = -1;
                 else
                     carte[ligne][colonne] = -2;
@@ -39,7 +40,7 @@ public class Reception
 
     public static void recevoirBateau(String data, ClientSocket clientSocket)
     {
-
+        System.out.println("YAAAAR");
         String[] sData = data.split(",");
         int ligneDep = Integer.parseInt(sData[0]);
         int colonneDep = Integer.parseInt(sData[1]);
@@ -56,8 +57,8 @@ public class Reception
             carte = j1.getMap().getCarte();
         else
             carte = j2.getMap().getCarte();
-        for(int i = ligneDep; i <= ligneArr; i++)
-            for(int j = colonneDep; j <= colonneArr; j++)
+        for(int i = ligneDep; i < ligneArr; i++)
+            for(int j = colonneDep; j < colonneArr; j++)
             {
                 carte[i][j] = taille;
                 if(colonneArr !=  colonneDep && (j == colonneArr || j == colonneDep)

@@ -96,7 +96,7 @@ public class Client implements Runnable
     }
 
 
-    public void close()
+    private void close()
     {
         try
         {

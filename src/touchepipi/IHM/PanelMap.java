@@ -1,5 +1,6 @@
 package touchepipi.IHM;
 
+import jdk.nashorn.internal.scripts.JO;
 import touchepipi.metier.Joueur;
 import touchepipi.network.Client.Paquet;
 
@@ -47,11 +48,9 @@ public class PanelMap extends JPanel implements MouseListener
                 g.drawRect(carte.length * 50 + 50 + 5 * 50, 30 + i * 50, 50, 50);
                 if(carte[i][j] == 0)
                     g.setColor(Color.cyan);
-                if(carte[i][j] == 1)
-                    g.setColor(Color.gray);
-                if(carte[i][j] == 2)
+                if(carte[i][j] == -1)
                     g.setColor(Color.red);
-                if(carte[i][j] == 3)
+                if(carte[i][j] == -2)
                     g.setColor(Color.blue);
                 g.fillRect(carte.length * 50 + 50 + j * 50 + 1,30 + i * 50 + 1, 49, 49);
             }
@@ -71,7 +70,7 @@ public class PanelMap extends JPanel implements MouseListener
             {
                 if(carte[i][j] == 0)
                     g.setColor(Color.cyan);
-                if(carte[i][j] == 1)
+                if(carte[i][j] / 10 >= 1)
                     g.setColor(Color.gray);
                 if(carte[i][j] == -1)
                     g.setColor(Color.red);
@@ -103,8 +102,24 @@ public class PanelMap extends JPanel implements MouseListener
     {
         int rectCol = getRectCol(e.getX());
         int rectLig = getRectLig(e.getY());
-        if(j.getCurrent())
-            j.envoyerTir(rectLig, rectCol);
+        if(j.getCurrent() && rectCol >= 11)
+        {
+            System.out.println("Tir : " + rectCol);
+            j.envoyerTir(rectLig, rectCol - 11);
+        }
+        if(rectCol < 10)
+        {
+            Integer taille = j.getBateaux().get(0) / 10;
+            if(taille == null)
+                e.consume();
+            String[] options = {"Horizontale" , "Verticale"};
+            JOptionPane jOptionPane = new JOptionPane();
+            int retour = jOptionPane.showOptionDialog(this, "Choisir l'orientation \n taille : " + taille, "Orientationn ? ", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+            if(retour == 1)
+                j.placerBateau(rectLig, rectCol, 'V');
+            else
+                j.placerBateau(rectLig, rectCol, 'H');
+        }
     }
 
     @Override
