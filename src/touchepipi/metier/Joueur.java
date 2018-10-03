@@ -52,21 +52,26 @@ public class Joueur
         int taille = bateau.remove(0) / 10;
         int[][] carte = map.getCarte();
         if(dir == 'H')
+        {
             for(int i = colonneDep; i < colonneDep +  taille; i++)
             {
                 carte[ligneDep][i] = taille * 10;
                 if(i == colonneDep || i == colonneDep + taille)
                     carte[ligneDep][i] += 100;
-
             }
+            Paquet.envoyerBateau(this, ligneDep, ligneDep, colonneDep, colonneDep +  taille, taille * 10 );
+        }
         if(dir == 'V')
+        {
             for(int i = ligneDep; i < ligneDep + taille; i++)
             {
                 carte[i][colonneDep] = taille * 10;
                 if(i == colonneDep || i == colonneDep + taille)
                     carte[i][colonneDep] += 100;
             }
-        Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep + taille, taille * 10 );
+            Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep, taille * 10 );
+        }
+
         return true;
 
     }

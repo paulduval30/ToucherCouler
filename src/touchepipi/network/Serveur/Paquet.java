@@ -28,6 +28,6 @@ public class Paquet
 
     public static void envoyerNom()
     {
-        instance.sendAll("1->²" + instance.getPartie().getJ1().getNom()+","+instance.getPartie().getJ2().getNom());
+        instance.sendAll("1->" + instance.getPartie().getJ1().getNom()+","+instance.getPartie().getJ2().getNom());
     }
 }

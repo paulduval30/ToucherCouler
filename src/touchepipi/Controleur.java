@@ -2,6 +2,7 @@ package touchepipi;
 
 import touchepipi.IHM.IHM;
 import touchepipi.IHM.MainFrame;
+import touchepipi.IHM.PanelChoix;
 import touchepipi.metier.Joueur;
 import touchepipi.metier.PartieServeur;
 
@@ -9,27 +10,11 @@ import java.util.Scanner;
 
 public class Controleur
 {
+    private MainFrame m1;
     IHM ihm;
     public Controleur()
     {
-        this.ihm = new IHM(this);
-        Scanner sc = new Scanner(System.in);
-        System.out.println("J/S");
-        String rep = sc.nextLine();
-        if(rep.equals("S"))
-            new PartieServeur(this);
-        else if(rep.equals("J1"))
-        {
-            MainFrame m1 = new MainFrame(new Joueur("Ah"));
-            new Thread(m1).run();
-        }
-        else
-        {
-            MainFrame m2 = new MainFrame(new Joueur("Bon"));
-            new Thread(m2).run();
-
-        }
-
+        new PanelChoix(this);
     }
 
 
@@ -51,5 +36,16 @@ public class Controleur
     public static void main(String[] argv)
     {
         Controleur c = new Controleur();
+    }
+
+    public void ajouterJoueur(String nom)
+    {
+        this.m1 = new MainFrame(this, new Joueur(nom));
+        new Thread(this.m1).run();
+    }
+
+    public void demarerServeur()
+    {
+        new PartieServeur(this);
     }
 }

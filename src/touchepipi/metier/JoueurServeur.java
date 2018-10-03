@@ -17,21 +17,24 @@ public class JoueurServeur
     }
 
 
-    public boolean placerBateau(int ligneDep, int ligneArr, int colonneDep, int colonneArr)
+    public boolean placerBateau(int ligneDep, int colonneDep, char dir, int taille)
     {
-        int[][] carte = this.map.getCarte();
-        if(ligneDep == ligneArr)
-            for(int i = colonneDep; i <= colonneArr; i++)
+        int[][] carte = map.getCarte();
+        if(dir == 'H')
+            for(int i = colonneDep; i < colonneDep +  taille; i++)
             {
-                carte[ligneDep][i] = 1;
+                carte[ligneDep][i] = taille * 10;
+                if(i == colonneDep || i == colonneDep + taille)
+                    carte[ligneDep][i] += 100;
             }
-        if(colonneDep == colonneArr)
-            for(int i = ligneDep; i <= ligneArr; i++)
+        if(dir == 'V')
+            for(int i = ligneDep; i < ligneDep + taille; i++)
             {
-                carte[i][colonneDep] = 1;
+                carte[i][colonneDep] = taille * 10;
+                if(i == colonneDep || i == colonneDep + taille)
+                    carte[i][colonneDep] += 100;
             }
         return true;
-
     }
 
     public String getNom()

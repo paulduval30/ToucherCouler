@@ -17,23 +17,25 @@ public class Reception
         int colonne = Integer.parseInt(sData[1]);
         String nom = sData[2];
         JoueurServeur j;
+        int value;
 
         for(ClientSocket c : instance.getClients())
         {
             String pseudo = c.getJoueur().getNom();
             if(!nom.equals(pseudo))
             {
-                int[][] carte = clientSocket.getJoueur().getMap().getCarte();
+                System.out.println(pseudo);
+                int[][] carte = c.getJoueur().getMap().getCarte();
                 if(carte[ligne][colonne] / 10 >= 1)
-                    carte[ligne][colonne] = -1;
+                    value = -1;
                 else
-                    carte[ligne][colonne] = -2;
+                    value = -2;
                 if(c.getJoueur() == instance.getPartie().getJ1())
                     j = instance.getPartie().getJ2();
                 else
                     j = instance.getPartie().getJ1();
 
-                Paquet.tir(ligne, colonne, carte[ligne][colonne], j);
+                Paquet.tir(ligne, colonne, value, j);
             }
         }
     }
@@ -57,14 +59,24 @@ public class Reception
             carte = j1.getMap().getCarte();
         else
             carte = j2.getMap().getCarte();
-        for(int i = ligneDep; i < ligneArr; i++)
+        if(ligneDep == ligneArr)
+        {
             for(int j = colonneDep; j < colonneArr; j++)
             {
-                carte[i][j] = taille;
-                if(colonneArr !=  colonneDep && (j == colonneArr || j == colonneDep)
-                        || ligneArr != ligneDep && (i == ligneArr || i == ligneDep))
-                    carte[i][j] += 100;
+                carte[ligneDep][j] = taille;
+                if(j == colonneArr - 1 || j == colonneDep)
+                    carte[ligneDep][j] += 100;
             }
+        }
+        else
+            for(int i = ligneDep; i < ligneArr; i++)
+            {
+                carte[i][colonneDep] = taille;
+                if(i == ligneArr - 1 || i == ligneDep)
+                    carte[i][colonneDep] += 100;
+            }
+
+
 
     }
 

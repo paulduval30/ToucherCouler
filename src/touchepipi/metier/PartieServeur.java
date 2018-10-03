@@ -1,6 +1,8 @@
 package touchepipi.metier;
 
 import touchepipi.Controleur;
+import touchepipi.IHM.FrameServeur;
+import touchepipi.IHM.PanelServeur;
 import touchepipi.network.Serveur.Serveur;
 
 public class PartieServeur
@@ -20,6 +22,7 @@ public class PartieServeur
         this.ctrl = controleur;
         this.serveur = new Serveur(this);
         serveur.listen();
+        new FrameServeur(this);
     }
 
     public JoueurServeur getJ1()

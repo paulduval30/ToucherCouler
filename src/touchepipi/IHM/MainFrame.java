@@ -9,22 +9,46 @@ public class MainFrame extends JFrame implements Runnable
 {
     private PanelMap map;
     private Joueur joueur;
+    Controleur ctrl;
 
-    public MainFrame(Joueur j)
+    private JPanel principale;
+
+    public MainFrame(Controleur ctrl, Joueur j)
     {
         this.joueur = j;
+        this.ctrl = ctrl;
         this.setVisible(true);
         this.setSize(800, 800);
         this.setTitle("La bataille nasale");
         //this.setTitle("Touche Pipi Game Pro Dev Incroyable Suce Moi !");
-        this.map = new PanelMap(joueur);
-        this.getContentPane().add(map);
+        this.map = new PanelMap(this.joueur);;
+        this.getContentPane().add(this.map);
+        new Thread(this).start();
+
     }
 
-    public void repaintMap()
+    public void setJoueur(Joueur joueur)
     {
-        this.map.setJoueur(this.joueur);
-        this.map.repaint();
+        this.joueur = joueur;
+    }
+
+    public void showMapPane()
+    {
+        System.out.println("Je change de Panel");
+        if(this.joueur == null)
+        {
+            System.out.println("Error : Player unset");
+            return;
+        }
+        this.map = new PanelMap(this.joueur);;
+        this.principale.add(this.map);
+        this.principale.repaint();
+    }
+
+
+    public Controleur getCtrl()
+    {
+        return this.ctrl;
     }
 
 
@@ -43,5 +67,11 @@ public class MainFrame extends JFrame implements Runnable
                 e.printStackTrace();
             }
         }
+    }
+
+    private void repaintMap()
+    {
+        this.map.setJoueur(joueur);
+        this.map.repaint();
     }
 }

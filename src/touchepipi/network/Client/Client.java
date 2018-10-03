@@ -89,7 +89,7 @@ public class Client implements Runnable
             catch(Exception e )
             {
                 e.printStackTrace();
-                break;
+                this.close();
             }
         }
         this.close();
