@@ -32,7 +32,6 @@ public class PanelChoix extends JFrame implements ActionListener
         this.add(startServer);
         this.add(startUser);
 
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.setVisible(true);
     }

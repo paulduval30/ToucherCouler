@@ -20,7 +20,7 @@ public class MainFrame extends JFrame implements Runnable
         this.setVisible(true);
         this.setSize(800, 800);
         this.setTitle("La bataille nasale");
-        this.map = new PanelMap(this.joueur);;
+        this.map = new PanelMap(this.joueur, this.ctrl);;
         this.getContentPane().add(this.map);
         new Thread(this).start();
 
@@ -41,7 +41,7 @@ public class MainFrame extends JFrame implements Runnable
             System.out.println("Error : Player unset");
             return;
         }
-        this.map = new PanelMap(this.joueur);;
+        this.map = new PanelMap(this.joueur, this.ctrl);;
         this.principale.add(this.map);
         this.principale.repaint();
     }
@@ -74,5 +74,10 @@ public class MainFrame extends JFrame implements Runnable
     {
         this.map.setJoueur(joueur);
         this.map.repaint();
+    }
+
+    public static void erreurPlacement(String message)
+    {
+
     }
 }

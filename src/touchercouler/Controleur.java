@@ -28,4 +28,14 @@ public class Controleur
     {
         new Controleur();
     }
+
+    public boolean placerBateau(Joueur j, int rectLig, int rectCol, char dir)
+    {
+        return j.placerBateau(rectLig, rectCol, dir);
+    }
+
+    public void envoyerTir(Joueur j, int rectLig, int i)
+    {
+        j.envoyerTir(rectLig, i);
+    }
 }

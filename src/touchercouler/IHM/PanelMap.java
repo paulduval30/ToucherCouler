@@ -1,5 +1,6 @@
 package touchercouler.IHM;
 
+import touchercouler.Controleur;
 import touchercouler.metier.Joueur;
 
 import javax.swing.*;
@@ -12,9 +13,11 @@ public class PanelMap extends JPanel implements MouseListener
     private final int RECT_SIZE = 50;
 
     private Joueur j;
+    private Controleur ctrl;
 
-    PanelMap(Joueur j)
+    PanelMap(Joueur j, Controleur ctrl)
     {
+        this.ctrl = ctrl;
         this.j = j;
         this.addMouseListener(this);
     }
@@ -90,10 +93,7 @@ public class PanelMap extends JPanel implements MouseListener
     }
 
     @Override
-    public void mouseClicked(MouseEvent e)
-    {
-
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     @Override
     public void mousePressed(MouseEvent e)
@@ -102,39 +102,45 @@ public class PanelMap extends JPanel implements MouseListener
         int rectLig = getRectLig(e.getY());
         if(j.getCurrent() && rectCol >= 11)
         {
-            System.out.println("Tir : " + rectCol);
-            j.envoyerTir(rectLig, rectCol - 11);
+            if(j.getBateaux().size() != 0)
+            {
+                JOptionPane.showMessageDialog(this, "Il vous reste " + j.getBateaux().size() +
+                        " à placer", "ATTENTION", JOptionPane.PLAIN_MESSAGE);
+            }
+            else
+            {
+                ctrl.envoyerTir(j, rectLig, rectCol - 11);
+            }
         }
         if(rectCol < 10)
         {
-            Integer taille = j.getBateaux().get(0) / 10;
-            if(taille == null)
+            if(j.getBateaux().size() == 0)
                 e.consume();
+            Integer taille = j.getBateaux().get(0) / 10;
+
             String[] options = {"Horizontale" , "Verticale"};
             JOptionPane jOptionPane = new JOptionPane();
-            int retour = jOptionPane.showOptionDialog(this, "Choisir l'orientation \n taille : " + taille, "Orientationn ? ", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+            int retour = jOptionPane.showOptionDialog(this, "Choisir l'orientation \n taille : "
+                    + taille, "Orientationn ? ", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+
             if(retour == 1)
-                j.placerBateau(rectLig, rectCol, 'V');
+               if(!ctrl.placerBateau(this.j, rectLig, rectCol, 'V'))
+                   JOptionPane.showMessageDialog(this,"Vous ne pouvez pas mettre votre bateau ici",
+                           "ATTENTION", JOptionPane.PLAIN_MESSAGE);
             else
-                j.placerBateau(rectLig, rectCol, 'H');
+                if(!ctrl.placerBateau(this.j, rectLig, rectCol, 'H'))
+                    JOptionPane.showMessageDialog(this,"Vous ne pouvez pas mettre votre bateau ici",
+                            "ATTENTION", JOptionPane.PLAIN_MESSAGE);
         }
     }
 
     @Override
-    public void mouseReleased(MouseEvent e)
-    {
-
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e)
-    {
-
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e)
-    {
-
-    }
+    public void mouseExited(MouseEvent e) {}
 }

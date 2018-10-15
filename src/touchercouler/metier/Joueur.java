@@ -1,5 +1,6 @@
 package touchercouler.metier;
 
+import touchercouler.IHM.MainFrame;
 import touchercouler.network.Client.Client;
 import touchercouler.network.Client.Paquet;
 
@@ -53,6 +54,11 @@ public class Joueur
         {
             for(int i = colonneDep; i < colonneDep +  taille; i++)
             {
+                if(carte[ligneDep][i] != 0)
+                {
+                    bateau.add(taille*10);
+                    return false;
+                }
                 carte[ligneDep][i] = taille * 10;
                 if(i == colonneDep || i == colonneDep + taille)
                     carte[ligneDep][i] += 100;
@@ -69,7 +75,6 @@ public class Joueur
             }
             Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep, taille * 10 );
         }
-
         return true;
 
     }
