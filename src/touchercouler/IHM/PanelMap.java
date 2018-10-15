@@ -114,7 +114,7 @@ public class PanelMap extends JPanel implements MouseListener
         }
         if(rectCol < 10)
         {
-            if(j.getBateaux().size() == 0)
+            if(j.getBateaux() == null)
                 e.consume();
             Integer taille = j.getBateaux().get(0) / 10;
 
@@ -125,13 +125,10 @@ public class PanelMap extends JPanel implements MouseListener
                     JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
 
             if(retour == 1)
-               if(!ctrl.placerBateau(this.j, rectLig, rectCol, 'V'))
-                   JOptionPane.showMessageDialog(this,"Vous ne pouvez pas mettre votre bateau ici",
-                           "ATTENTION", JOptionPane.PLAIN_MESSAGE);
+               ctrl.placerBateau(this.j, rectLig, rectCol, 'V');
+
             else
-                if(!ctrl.placerBateau(this.j, rectLig, rectCol, 'H'))
-                    JOptionPane.showMessageDialog(this,"Vous ne pouvez pas mettre votre bateau ici",
-                            "ATTENTION", JOptionPane.PLAIN_MESSAGE);
+                ctrl.placerBateau(this.j, rectLig, rectCol, 'H');
         }
     }
 

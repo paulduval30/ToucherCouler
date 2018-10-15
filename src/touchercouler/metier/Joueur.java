@@ -54,11 +54,6 @@ public class Joueur
         {
             for(int i = colonneDep; i < colonneDep +  taille; i++)
             {
-                if(carte[ligneDep][i] != 0)
-                {
-                    bateau.add(taille*10);
-                    return false;
-                }
                 carte[ligneDep][i] = taille * 10;
                 if(i == colonneDep || i == colonneDep + taille)
                     carte[ligneDep][i] += 100;
