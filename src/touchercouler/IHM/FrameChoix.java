@@ -9,14 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
-public class PanelChoix extends JFrame implements ActionListener
+public class FrameChoix extends JFrame implements ActionListener
 {
     JButton startServer;
     JButton startUser;
 
     Controleur ctrl;
 
-    public PanelChoix(Controleur ctrl)
+    public FrameChoix(Controleur ctrl)
     {
         this.ctrl = ctrl;
         this.setTitle("Bataille Nasale : Main Menu");
@@ -42,7 +42,8 @@ public class PanelChoix extends JFrame implements ActionListener
         if(e.getSource() == startUser)
         {
             String nom = JOptionPane.showInputDialog("Entrer le nom joueur");
-            new MainFrame(ctrl, new Joueur(nom));
+            MainFrame m1 = new MainFrame(ctrl, new Joueur(nom));
+            ctrl.setM1(m1);
             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 
         }

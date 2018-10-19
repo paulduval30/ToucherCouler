@@ -48,10 +48,18 @@ public class Joueur
     }
     public boolean placerBateau(int ligneDep, int colonneDep, char dir)
     {
-        int taille = bateau.remove(0) / 10;
+        int taille = bateau.get(0) / 10;
         int[][] carte = map.getCarte();
         if(dir == 'H')
         {
+            if(colonneDep + taille >= carte.length)
+                return false;
+            for(int i = colonneDep; i < colonneDep +  taille; i++)
+            {
+                if(carte[ligneDep][i] != 0)
+                    return false;
+            }
+
             for(int i = colonneDep; i < colonneDep +  taille; i++)
             {
                 carte[ligneDep][i] = taille * 10;
@@ -62,6 +70,14 @@ public class Joueur
         }
         if(dir == 'V')
         {
+            if(ligneDep + taille >= carte.length)
+                return false;
+            for(int i = ligneDep; i < ligneDep + taille; i++)
+            {
+                if(carte[i][colonneDep] != 0)
+                    return false;
+            }
+
             for(int i = ligneDep; i < ligneDep + taille; i++)
             {
                 carte[i][colonneDep] = taille * 10;
@@ -70,6 +86,7 @@ public class Joueur
             }
             Paquet.envoyerBateau(this, ligneDep, ligneDep + taille, colonneDep, colonneDep, taille * 10 );
         }
+        bateau.remove(0);
         return true;
 
     }

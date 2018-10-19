@@ -6,6 +6,7 @@ import touchercouler.metier.PartieServeur;
 /**
  * Classe d'envoie des paquets Serveur
  */
+//TODO Gérer les erreurs d'envoie
 public class Paquet
 {
     public static Serveur instance;

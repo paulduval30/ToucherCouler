@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Serveur implements Runnable
 {
+    public static Serveur instance;
     private ServerSocket socket;
 
     private PartieServeur partie;
@@ -21,7 +22,7 @@ public class Serveur implements Runnable
     {
         nbJoueur = 0;
         Paquet.instance = this;
-        Reception.instance = this;
+        Serveur.instance = this;
         this.partie = partie;
         try
         {

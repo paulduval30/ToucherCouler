@@ -80,4 +80,9 @@ public class MainFrame extends JFrame implements Runnable
     {
 
     }
+
+    public void alert(String s)
+    {
+        JOptionPane.showMessageDialog(this,s);
+    }
 }

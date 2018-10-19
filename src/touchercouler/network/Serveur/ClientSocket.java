@@ -64,7 +64,7 @@ public class ClientSocket implements Runnable
                 String[] paquet = message.split("->");
                 switch (paquet[0])
                 {
-                    case "0" : Reception.recevoirBateau(paquet[1], this);
+                    case "0" : Reception.recevoirBateau(paquet[1]);
                         break;
                     case "1" : Reception.recevoirTir(paquet[1], this);
                         break;

@@ -6,6 +6,7 @@ import touchercouler.network.Serveur.Serveur;
 
 public class PartieServeur
 {
+    //TODO Gérer les plateau de tir
     private JoueurServeur j1;
     private JoueurServeur j2;
 

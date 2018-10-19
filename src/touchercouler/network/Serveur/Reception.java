@@ -8,7 +8,6 @@ import touchercouler.metier.JoueurServeur;
  */
 public class Reception
 {
-    public static Serveur instance;
     public static void recevoirTir(String data, ClientSocket clientSocket)
     {
         System.out.println("TIR");
@@ -19,7 +18,7 @@ public class Reception
         JoueurServeur j;
         int value;
 
-        for(ClientSocket c : instance.getClients())
+        for(ClientSocket c : Serveur.instance.getClients())
         {
             String pseudo = c.getJoueur().getNom();
             if(!nom.equals(pseudo))
@@ -30,17 +29,17 @@ public class Reception
                     value = -1;
                 else
                     value = -2;
-                if(c.getJoueur() == instance.getPartie().getJ1())
-                    j = instance.getPartie().getJ2();
+                if(c.getJoueur() == Serveur.instance.getPartie().getJ1())
+                    j = Serveur.instance.getPartie().getJ2();
                 else
-                    j = instance.getPartie().getJ1();
+                    j = Serveur.instance.getPartie().getJ1();
 
                 Paquet.tir(ligne, colonne, value, j);
             }
         }
     }
 
-    public static void recevoirBateau(String data, ClientSocket clientSocket)
+    public static void recevoirBateau(String data)
     {
         System.out.println("YAAAAR");
         String[] sData = data.split(",");
@@ -51,8 +50,8 @@ public class Reception
         int taille = Integer.parseInt(sData[4]);
         String nom = sData[5];
 
-        JoueurServeur j1 = instance.getPartie().getJ1();
-        JoueurServeur j2 = instance.getPartie().getJ2();
+        JoueurServeur j1 = Serveur.instance.getPartie().getJ1();
+        JoueurServeur j2 = Serveur.instance.getPartie().getJ2();
 
         int[][] carte;
         if(nom.equals(j1.getNom()))
@@ -82,43 +81,43 @@ public class Reception
 
     public static void recevoirConnection(String data)
     {
-        if(instance.getPartie().getJ1() == null)
+        if(Serveur.instance.getPartie().getJ1() == null)
         {
-            instance.getPartie().setJ1(new JoueurServeur());
-            instance.getPartie().getJ1().setNom(data);
+            Serveur.instance.getPartie().setJ1(new JoueurServeur());
+            Serveur.instance.getPartie().getJ1().setNom(data);
         }
-        else if (instance.getPartie().getJ2() == null)
+        else if (Serveur.instance.getPartie().getJ2() == null)
         {
-            instance.getPartie().setJ2(new JoueurServeur());
-            instance.getPartie().getJ2().setNom(data);
+            Serveur.instance.getPartie().setJ2(new JoueurServeur());
+            Serveur.instance.getPartie().getJ2().setNom(data);
         }
 
-        instance.ajouterJoueur();
+        Serveur.instance.ajouterJoueur();
 
-        if(instance.getNbJoueur() == 2)
+        if(Serveur.instance.getNbJoueur() == 2)
         {
-            instance.getPartie().setCurrent(instance.getPartie().getJ1());
-            instance.getClients().get(0).setJoueur(instance.getPartie().getJ1());
-            instance.getClients().get(1).setJoueur(instance.getPartie().getJ2());
-            instance.setRunning(false);
-            instance.getPartie().setCurrent(instance.getPartie().getJ1());
+            Serveur.instance.getPartie().setCurrent(Serveur.instance.getPartie().getJ1());
+            Serveur.instance.getClients().get(0).setJoueur(Serveur.instance.getPartie().getJ1());
+            Serveur.instance.getClients().get(1).setJoueur(Serveur.instance.getPartie().getJ2());
+            Serveur.instance.setRunning(false);
+            Serveur.instance.getPartie().setCurrent(Serveur.instance.getPartie().getJ1());
             Paquet.envoyerNom();
             Paquet.demarerPartie();
-            Paquet.envoyerTour(instance.getPartie());
+            Paquet.envoyerTour(Serveur.instance.getPartie());
         }
 
     }
 
     public static void recevoirFinTour(String data, ClientSocket clientSocket)
     {
-        JoueurServeur j1 = instance.getPartie().getJ1();
-        JoueurServeur j2 = instance.getPartie().getJ2();
+        JoueurServeur j1 = Serveur.instance.getPartie().getJ1();
+        JoueurServeur j2 = Serveur.instance.getPartie().getJ2();
 
         if(data.equals(j1.getNom()))
-            instance.getPartie().setCurrent(j2);
+            Serveur.instance.getPartie().setCurrent(j2);
         else
-            instance.getPartie().setCurrent(j1);
-        Paquet.envoyerTour(instance.getPartie() );
+            Serveur.instance.getPartie().setCurrent(j1);
+        Paquet.envoyerTour(Serveur.instance.getPartie() );
     }
 
 
